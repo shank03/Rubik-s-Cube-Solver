@@ -79,36 +79,36 @@ class Cube:
         state = ""
         for i in self.white:
             for j in i:
-                state += selectText(j)
+                state += select_text(j)
 
         for i in self.red:
             for j in i:
-                state += selectText(j)
+                state += select_text(j)
 
         for i in self.green:
             for j in i:
-                state += selectText(j)
+                state += select_text(j)
 
         for i in self.yellow:
             for j in i:
-                state += selectText(j)
+                state += select_text(j)
 
         for i in self.orange:
             for j in i:
-                state += selectText(j)
+                state += select_text(j)
 
         for i in self.blue:
             for j in i:
-                state += selectText(j)
+                state += select_text(j)
         return state
 
     # Returns the moves to be followed for solving the cube
-    def getSolvingSteps(self):
+    def get_solving_steps(self):
         return kociemba.solve(self.__current_state())
 
 
 # Convert to kociemba format
-def selectText(c):
+def select_text(c):
     f = {
         "w": "U",
         "r": "R",
