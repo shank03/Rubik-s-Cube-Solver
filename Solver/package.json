@@ -1,0 +1,31 @@
+{
+    "name": "solver",
+    "productName": "CubeSolver",
+    "version": "1.0.0",
+    "main": "./build/app.js",
+    "description": "",
+    "scripts": {
+        "build_tsc": "tsc",
+        "start": "npm run build_tsc && electron ./build/app.js",
+        "package": "npm run build_tsc && sudo electron-builder -l"
+    },
+    "keywords": [],
+    "author": "Shashank Verma (shank03)",
+    "license": "ISC",
+    "devDependencies": {
+        "electron": "^13.1.4",
+        "electron-packager": "^15.2.0",
+        "typescript": "^4.3.4"
+    },
+    "build": {
+        "appId": "com.shank03.cube_solver",
+        "files": [
+            "build",
+            "index.html",
+            "main.css",
+            "main.js",
+            "solve.txt"
+        ],
+        "asar": false
+    }
+}
