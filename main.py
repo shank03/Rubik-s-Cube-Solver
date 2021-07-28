@@ -1,28 +1,27 @@
-import cv2  # Import opencv library
+import scan_cube
+import kociemba
+from sys import exit
+from os import system
 
-# Create a camera object
-# The `0` in the VideoCapture param denotes the camera ID
-# In case of laptop, it's usually 0
-camera = cv2.VideoCapture(0)
+sides = scan_cube.scan()
+if len(sides) == 6:
+    state = ""
+    for face in 'URFDLB':
+        state += ''.join(sides[face])
+    print(state)
 
-# Check if camera is accessible
-if camera.isOpened():
+    try:
+        algo = kociemba.solve(state)
 
-    # Start indefinite loop
-    while True:
-        # `ret` is boolean stating if frame retrieval was success
-        # `frame` is the cv2.Mat object which contains the frame in the form
-        # of matrix of RGB values
-        ret, frame = camera.read()
+        file = open("Solver/solve.txt", "w")
+        file.write(algo)
+        file.close()
 
-        # Create a window named "Capture" and display the retrieved `frame`
-        cv2.imshow("Capture", frame)
+        # Display 3D simulation
+        system("cd Solver && npm run start")
+    except ValueError as err:
+        print(f"Error: {err}")
+        exit(1)
 
-        # Listen for key
-        if cv2.waitKey(10) & 0xFF == ord('q'):
-            break  # Break the loop if key hit is 'q'
-
-    # Release camera
-    camera.release()
-    # Destroy the window we created
-    cv2.destroyAllWindows()
+else:
+    print("Incomplete")
