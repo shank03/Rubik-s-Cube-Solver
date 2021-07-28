@@ -1,5 +1,10 @@
 # Rubik-s-Cube-Solver
 
+### What does it do
+
+- It will record the colors on faces of the cube.
+- Then it will show you 3D simulation and guide you to solve the cube.
+
 ### How to get started
 Make sure you have `Node.js` installed.
 
